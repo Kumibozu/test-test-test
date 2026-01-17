@@ -1,3 +1,7 @@
+/* -----------------------------------------
+   ROOT THEME — Parchment & Ink Aesthetic
+----------------------------------------- */
+
 :root {
   --bg: #15110f;
   --bg-alt: #1f1915;
@@ -38,11 +42,13 @@ body {
   align-items: stretch;
 }
 
-/* APP SHELL */
+/* -----------------------------------------
+   APP SHELL — 1.5× Wider
+----------------------------------------- */
 
 .app-shell {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1800px; /* 1.5× wider than original 1200px */
   margin: 16px;
   background: linear-gradient(135deg, #1b1510, #120e0b);
   border-radius: 16px;
@@ -52,6 +58,10 @@ body {
   flex-direction: column;
   overflow: hidden;
 }
+
+/* -----------------------------------------
+   HEADER
+----------------------------------------- */
 
 .app-header {
   padding: 18px 22px 12px;
@@ -73,16 +83,67 @@ body {
   color: var(--text-muted);
 }
 
-/* LAYOUT */
+/* -----------------------------------------
+   GLOBAL SEARCH
+----------------------------------------- */
+
+.global-search-box {
+  margin: 14px auto 0;
+  width: 70%;
+  max-width: 650px;
+}
+
+#global-search {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border-soft);
+  background: rgba(15, 11, 8, 0.9);
+  color: var(--parchment);
+  font-size: 0.9rem;
+}
+
+#global-search:focus {
+  outline: none;
+  border-color: rgba(242, 210, 160, 0.4);
+  box-shadow: 0 0 6px rgba(242, 210, 160, 0.3);
+}
+
+.global-results {
+  width: 70%;
+  max-width: 650px;
+  margin: 8px auto 0;
+  max-height: 240px;
+  overflow-y: auto;
+  background: rgba(15, 11, 8, 0.9);
+  border: 1px solid var(--border-soft);
+  border-radius: 8px;
+  padding: 8px 12px;
+}
+
+.search-result {
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.search-result strong {
+  color: var(--accent-soft);
+}
+
+/* -----------------------------------------
+   LAYOUT
+----------------------------------------- */
 
 .app-body {
   display: grid;
-  grid-template-columns: 240px 1fr;
+  grid-template-columns: 260px 1fr;
   min-height: 540px;
   max-height: calc(100vh - 80px);
 }
 
-/* SIDEBAR */
+/* -----------------------------------------
+   SIDEBAR
+----------------------------------------- */
 
 .sidebar {
   background: linear-gradient(180deg, #18120e, #100c09);
@@ -103,8 +164,7 @@ body {
   color: var(--text-muted);
   font-size: 0.85rem;
   cursor: pointer;
-  transition: background var(--transition-fast), color var(--transition-fast), border var(--transition-fast),
-    transform var(--transition-fast);
+  transition: var(--transition-fast);
 }
 
 .nav-btn:hover {
@@ -120,10 +180,12 @@ body {
   border-color: rgba(242, 210, 160, 0.4);
 }
 
-/* CONTENT */
+/* -----------------------------------------
+   CONTENT PANELS
+----------------------------------------- */
 
 .content {
-  padding: 14px 16px 16px;
+  padding: 16px 20px;
   overflow-y: auto;
 }
 
@@ -150,37 +212,29 @@ body {
   color: var(--text-muted);
 }
 
-/* TIMELINE */
-
-.timeline {
-  display: grid;
-  gap: 10px;
-}
+/* -----------------------------------------
+   TIMELINE (Era Grouping)
+----------------------------------------- */
 
 .timeline-era {
   background: rgba(15, 11, 8, 0.9);
   border-radius: var(--radius);
   border: 1px solid var(--border-soft);
-  padding: 10px 12px;
+  padding: 12px 14px;
+  margin-bottom: 12px;
 }
 
-.timeline-era h3 {
-  margin: 0;
-  font-size: 1rem;
+.timeline-era h2 {
+  margin: 0 0 6px;
+  font-size: 1.1rem;
   color: var(--accent-soft);
 }
 
-.era-range {
-  margin: 2px 0 8px;
-  font-size: 0.8rem;
-  color: var(--text-muted);
-}
-
 details {
-  margin: 4px 0;
+  margin: 6px 0;
   background: rgba(243, 226, 196, 0.03);
   border-radius: 6px;
-  padding: 4px 6px;
+  padding: 6px 8px;
 }
 
 details summary {
@@ -190,27 +244,27 @@ details summary {
 }
 
 details p {
-  margin: 4px 0 2px;
+  margin: 4px 0;
   font-size: 0.85rem;
   color: var(--text-muted);
 }
 
-/* ATLAS */
+/* -----------------------------------------
+   ATLAS
+----------------------------------------- */
 
 .atlas-layout {
   display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.4fr);
-  gap: 12px;
+  gap: 14px;
 }
 
-.atlas-map {
+.atlas-map,
+.atlas-regions {
   background: rgba(15, 11, 8, 0.9);
   border-radius: var(--radius);
   border: 1px solid var(--border-soft);
-  padding: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  padding: 12px;
 }
 
 .map-placeholder {
@@ -222,30 +276,16 @@ details p {
   font-size: 0.85rem;
 }
 
-.map-placeholder p {
-  margin: 4px 0;
-}
-
-.map-note {
-  font-size: 0.78rem;
-  opacity: 0.9;
-}
-
 .atlas-regions {
-  background: rgba(15, 11, 8, 0.9);
-  border-radius: var(--radius);
-  border: 1px solid var(--border-soft);
-  padding: 10px;
   display: grid;
-  grid-template-columns: 150px minmax(0, 1fr);
-  gap: 8px;
+  grid-template-columns: 160px 1fr;
+  gap: 10px;
 }
 
 .region-list {
   list-style: none;
   margin: 0;
   padding: 0;
-  font-size: 0.85rem;
 }
 
 .region-item {
@@ -253,13 +293,12 @@ details p {
   border-radius: 6px;
   cursor: pointer;
   color: var(--text-muted);
-  transition: background var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+  transition: var(--transition-fast);
 }
 
 .region-item:hover {
   background: rgba(242, 210, 160, 0.06);
   color: var(--parchment);
-  transform: translateX(1px);
 }
 
 .region-item.active {
@@ -267,30 +306,27 @@ details p {
   color: var(--parchment);
 }
 
-.region-detail {
-  font-size: 0.85rem;
-  color: var(--text-muted);
-}
-
-/* CARDS */
+/* -----------------------------------------
+   CARDS (Factions, Culture, Characters)
+----------------------------------------- */
 
 .cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-  gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 12px;
 }
 
 .card {
   background: rgba(15, 11, 8, 0.9);
   border-radius: var(--radius);
   border: 1px solid var(--border-soft);
-  padding: 10px 11px;
+  padding: 12px;
   font-size: 0.85rem;
 }
 
 .card h3 {
   margin: 0 0 4px;
-  font-size: 0.95rem;
+  font-size: 1rem;
   color: var(--accent-soft);
 }
 
@@ -301,81 +337,9 @@ details p {
   font-style: italic;
 }
 
-.card ul {
-  margin: 0;
-  padding-left: 16px;
-}
-
-.card li {
-  margin: 2px 0;
-}
-
-/* COLD WAR */
-
-.coldwar-layout {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 10px;
-  margin-bottom: 12px;
-}
-
-.coldwar-block {
-  background: rgba(15, 11, 8, 0.9);
-  border-radius: var(--radius);
-  border: 1px solid var(--border-soft);
-  padding: 10px 11px;
-  font-size: 0.85rem;
-}
-
-.coldwar-block h3 {
-  margin: 0 0 6px;
-  font-size: 0.95rem;
-  color: var(--accent-soft);
-}
-
-.coldwar-block ul {
-  margin: 0;
-  padding-left: 16px;
-}
-
-.coldwar-block li {
-  margin: 2px 0;
-}
-
-.tension-meter {
-  background: rgba(15, 11, 8, 0.9);
-  border-radius: var(--radius);
-  border: 1px solid var(--border-soft);
-  padding: 10px 11px;
-  font-size: 0.85rem;
-}
-
-.meter-bar {
-  width: 100%;
-  height: 10px;
-  border-radius: 999px;
-  background: rgba(242, 210, 160, 0.08);
-  overflow: hidden;
-  margin: 4px 0 6px;
-}
-
-.meter-fill {
-  width: 78%;
-  height: 100%;
-  background: linear-gradient(90deg, var(--accent), var(--danger));
-}
-
-.meter-caption {
-  margin: 0;
-  color: var(--text-muted);
-  font-size: 0.8rem;
-}
-
-/* ENCYCLOPEDIA */
-
-.search-box {
-  margin-bottom: 10px;
-}
+/* -----------------------------------------
+   ENCYCLOPEDIA
+----------------------------------------- */
 
 #encyclopedia-search {
   width: 100%;
@@ -387,27 +351,21 @@ details p {
   font-size: 0.85rem;
 }
 
-#encyclopedia-search:focus {
-  outline: none;
-  border-color: rgba(242, 210, 160, 0.4);
-}
-
 .encyclopedia-results {
   display: grid;
-  gap: 8px;
+  gap: 10px;
 }
 
 .encyclopedia-entry {
   background: rgba(15, 11, 8, 0.9);
   border-radius: var(--radius);
   border: 1px solid var(--border-soft);
-  padding: 8px 9px;
-  font-size: 0.85rem;
+  padding: 10px;
 }
 
 .encyclopedia-entry h3 {
   margin: 0 0 4px;
-  font-size: 0.9rem;
+  font-size: 1rem;
   color: var(--accent-soft);
 }
 
@@ -417,11 +375,9 @@ details p {
   color: var(--text-muted);
 }
 
-.encyclopedia-entry p {
-  margin: 0;
-}
-
-/* ANIMATIONS */
+/* -----------------------------------------
+   ANIMATIONS
+----------------------------------------- */
 
 @keyframes fadeIn {
   from {
@@ -434,7 +390,9 @@ details p {
   }
 }
 
-/* RESPONSIVE */
+/* -----------------------------------------
+   RESPONSIVE
+----------------------------------------- */
 
 @media (max-width: 900px) {
   .app-body {
@@ -444,12 +402,6 @@ details p {
   .sidebar {
     flex-direction: row;
     overflow-x: auto;
-    padding: 8px;
-  }
-
-  .nav-btn {
-    white-space: nowrap;
-    font-size: 0.8rem;
   }
 }
 
