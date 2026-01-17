@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Chronicles of Drezbaeryn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="app-header">
+      <h1>Chronicles of Drezbaeryn</h1>
+      <p class="subtitle">
+        A historiographic chronicle of nations, revolutions, and cold wars across Drezbaeryn.
+      </p>
+    </header>
+
+    <div class="app-body">
+      <nav class="sidebar">
+        <button class="nav-btn active" data-target="timeline">Interactive Timeline</button>
+        <button class="nav-btn" data-target="atlas">World Atlas & Map</button>
+        <button class="nav-btn" data-target="factions">Faction Codex</button>
+        <button class="nav-btn" data-target="culture">Cultural Archive</button>
+        <button class="nav-btn" data-target="characters">Characters & Leaders</button>
+        <button class="nav-btn" data-target="coldwar">Cold War Dashboard</button>
+        <button class="nav-btn" data-target="encyclopedia">Searchable Encyclopedia</button>
+      </nav>
+
+      <main class="content">
+
+        <!-- TIMELINE -->
+        <section id="timeline" class="panel active">
+          <h2>Interactive Timeline</h2>
+          <p class="panel-intro">
+            Scroll through the major eras of Drezbaeryn and open key events to read their chronicles.
+          </p>
+          <div class="timeline">
+            <div class="timeline-era">
+              <h3>Collapse of the Era of the Globe</h3>
+              <p class="era-range">c. 0–120 A.C. (After Collapse)</p>
+              <details>
+                <summary>Fall of the Global Concord</summary>
+                <p>
+                  The last remnants of the Era of the Globe fracture under resource wars and ideological schisms.
+                  City‑states retreat behind walls, and the myth of a unified world becomes a cautionary tale.
+                </p>
+              </details>
+              <details>
+                <summary>Fragmentation of the Continental Councils</summary>
+                <p>
+                  Once‑cooperative councils turn inward, hoarding archives and weaponry. The first proto‑Commonwealth
+                  ideas are whispered in underground salons.
+                </p>
+              </details>
+            </div>
+
+            <div class="timeline-era">
+              <h3>Era of Anarchy</h3>
+              <p class="era-range">c. 120–210 A.C.</p>
+              <details>
+                <summary>Warlord Cartels of the Gap</summary>
+                <p>
+                  Merchant houses in the Gap weaponize trade routes, taxing famine and selling safety. Their ledgers
+                  become as feared as any sword.
+                </p>
+              </details>
+              <details>
+                <summary>Urban Tithe Riots</summary>
+                <p>
+                  In the crumbling cities of Drezbaeryn, the Urban Tithe sparks riots as citizens refuse to fund
+                  absentee governors and private militias.
+                </p>
+              </details>
+            </div>
+
+            <div class="timeline-era">
+              <h3>Rise of the Khynmour Republic</h3>
+              <p class="era-range">c. 210–260 A.C.</p>
+              <details>
+                <summary>Khynmour Civic Charter</summary>
+                <p>
+                  A coalition of guilds, scholars, and ex‑officers draft the Khynmour Charter, promising representation
+                  in exchange for service and tax discipline.
+                </p>
+              </details>
+              <details>
+                <summary>Montague’s First Pamphlets</summary>
+                <p>
+                  A minor clerk named Montague publishes anonymous tracts arguing that sovereignty belongs to the
+                  governed, not the garrison.
+                </p>
+              </details>
+            </div>
+
+            <div class="timeline-era">
+              <h3>Formation of the Commonwealth</h3>
+              <p class="era-range">c. 260–320 A.C.</p>
+              <details>
+                <summary>Revolutionary Commonwealth of Montague</summary>
+                <p>
+                  Montague’s movement seizes the capital, replacing hereditary councils with elected assemblies.
+                  The Commonwealth’s red‑and‑gold sigil becomes a symbol of both hope and terror.
+                </p>
+              </details>
+              <details>
+                <summary>Codification of the Urban Tithe</summary>
+                <p>
+                  The Tithe is re‑framed as a civic duty, funding public works and secret police in equal measure.
+                </p>
+              </details>
+            </div>
+
+            <div class="timeline-era">
+              <h3>Indros Industrialisation</h3>
+              <p class="era-range">c. 320–380 A.C.</p>
+              <details>
+                <summary>Steam‑Forges of Indros</summary>
+                <p>
+                  Indros harnesses river‑heat and coal seams, birthing foundries that can arm ten armies at once.
+                  Its militias become the steel backbone of regional conflicts.
+                </p>
+              </details>
+              <details>
+                <summary>Mi’yam Relic Excavations</summary>
+                <p>
+                  Deep beneath Indros, Mi’yam relics are unearthed—devices that blur the line between technology and
+                  theology. Every faction wants them.
+                </p>
+              </details>
+            </div>
+
+            <div class="timeline-era">
+              <h3>Gap Pass Campaign</h3>
+              <p class="era-range">c. 380–410 A.C.</p>
+              <details>
+                <summary>Siege of the Gap Citadels</summary>
+                <p>
+                  Commonwealth legions and Indros militias attempt to break the merchant houses’ chokehold on the
+                  mountain passes. The campaign becomes a ledger of atrocities.
+                </p>
+              </details>
+              <details>
+                <summary>Wifuni Zulun City War</summary>
+                <p>
+                  In the river‑cities of Wifuni Zulun, proxy forces clash over tariffs and relic smuggling. The war is
+                  never formally declared, only accounted.
+                </p>
+              </details>
+            </div>
+
+            <div class="timeline-era">
+              <h3>Rise of Ryenarkia</h3>
+              <p class="era-range">c. 410–460 A.C.</p>
+              <details>
+                <summary>Coronation of Darwues the Emperor</summary>
+                <p>
+                  Darwues unites the Ryenarkian heartlands under an imperial cult, claiming divine mandate through
+                  Halphadite prophecy and battlefield miracles.
+                </p>
+              </details>
+              <details>
+                <summary>Ryenarkian Imperial Cult Edicts</summary>
+                <p>
+                  The Imperial Cult rewrites law, calendar, and ritual. Loyalty to Darwues becomes both civic duty and
+                  sacrament.
+                </p>
+              </details>
+            </div>
+
+            <div class="timeline-era">
+              <h3>Modern Cold War</h3>
+              <p class="era-range">c. 460 A.C. – Present</p>
+              <details>
+                <summary>Commonwealth–Ryenarkia Cold War</summary>
+                <p>
+                  The Commonwealth and Ryenarkia avoid open war, instead funding revolutions, militias, and cults
+                  across Drezbaeryn. Every border becomes a fault line.
+                </p>
+              </details>
+              <details>
+                <summary>Shadow Archives of Drezbaeryn</summary>
+                <p>
+                  Historians, spies, and priests compete to control the narrative. The truth of the past becomes the
+                  most valuable weapon of the present.
+                </p>
+              </details>
+            </div>
+          </div>
+        </section>
+
+        <!-- ATLAS -->
+        <section id="atlas" class="panel">
+          <h2>World Atlas & Map Explorer</h2>
+          <p class="panel-intro">
+            A conceptual atlas of Drezbaeryn. Click a region to view its political, cultural, and military profile.
+          </p>
+          <div class="atlas-layout">
+            <div class="atlas-map">
+              <div class="map-placeholder">
+                <p>Map Placeholder</p>
+                <p class="map-note">
+                  In a future version, this could be replaced with a drawn or interactive map. For now, use the region
+                  list to explore.
+                </p>
+              </div>
+            </div>
+            <div class="atlas-regions">
+              <ul class="region-list">
+                <li data-region="commonwealth" class="region-item active">The Commonwealth</li>
+                <li data-region="ryenarkia" class="region-item">Ryenarkia</li>
+                <li data-region="indros" class="region-item">Indros</li>
+                <li data-region="jindu" class="region-item">Jindu / Southriver</li>
+                <li data-region="gap" class="region-item">The Gap</li>
+                <li data-region="drezbaeryn" class="region-item">Drezbaeryn (Urban Heartlands)</li>
+                <li data-region="tribal" class="region-item">Tribal Territories</li>
+              </ul>
+              <div class="region-detail" id="region-detail">
+                <!-- Filled by JS -->
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- FACTIONS -->
+        <section id="factions" class="panel">
+          <h2>Faction Codex</h2>
+          <p class="panel-intro">
+            A codex of major factions, their symbols, slogans, ideologies, and key figures.
+          </p>
+          <div class="cards-grid" id="faction-cards">
+            <!-- Filled by JS -->
+          </div>
+        </section>
+
+        <!-- CULTURE -->
+        <section id="culture" class="panel">
+          <h2>Cultural Archive</h2>
+          <p class="panel-intro">
+            Artifacts, slogans, hymns, festivals, and relics—curated like a museum of a world on the brink.
+          </p>
+          <div class="cards-grid" id="culture-cards">
+            <!-- Filled by JS -->
+          </div>
+        </section>
+
+        <!-- CHARACTERS -->
+        <section id="characters" class="panel">
+          <h2>Characters & Leaders</h2>
+          <p class="panel-intro">
+            Profiles of emperors, revolutionaries, commanders, and merchant princes who shaped Drezbaeryn.
+          </p>
+          <div class="cards-grid" id="character-cards">
+            <!-- Filled by JS -->
+          </div>
+        </section>
+
+        <!-- COLD WAR -->
+        <section id="coldwar" class="panel">
+          <h2>Cold War Dashboard</h2>
+          <p class="panel-intro">
+            A high‑level view of the ideological struggle between the Commonwealth and Ryenarkia.
+          </p>
+          <div class="coldwar-layout">
+            <div class="coldwar-block">
+              <h3>Commonwealth Sphere</h3>
+              <ul>
+                <li><strong>Ideology:</strong> Revolutionary republicanism, civic duty, controlled markets.</li>
+                <li><strong>Methods:</strong> Funding assemblies, arming militias, exporting charters and pamphlets.</li>
+                <li><strong>Influence Zones:</strong> Khynmour, Indros industrial councils, urban guilds of Drezbaeryn.</li>
+                <li><strong>Proxy Tools:</strong> Revolutionary Commonwealth of Montague cells, trade unions, civic militias.</li>
+              </ul>
+            </div>
+            <div class="coldwar-block">
+              <h3>Ryenarkian Sphere</h3>
+              <ul>
+                <li><strong>Ideology:</strong> Imperial cult, divine mandate, hierarchical order.</li>
+                <li><strong>Methods:</strong> Sponsoring cults, backing monarchist restorations, blessing loyal warlords.</li>
+                <li><strong>Influence Zones:</strong> Ryenarkian heartlands, Halphadite shrines, frontier garrisons.</li>
+                <li><strong>Proxy Tools:</strong> Ryenarkian Imperial Cult, temple militias, loyalist city councils.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="tension-meter">
+            <h3>Global Tension</h3>
+            <div class="meter-bar">
+              <div class="meter-fill"></div>
+            </div>
+            <p class="meter-caption">
+              Officially, peace. Unofficially, every border is a battlefield of influence, relics, and narratives.
+            </p>
+          </div>
+        </section>
+
+        <!-- ENCYCLOPEDIA -->
+        <section id="encyclopedia" class="panel">
+          <h2>Searchable Encyclopedia</h2>
+          <p class="panel-intro">
+            Search across terms, events, factions, relics, and concepts in the Chronicles of Drezbaeryn.
+          </p>
+          <div class="search-box">
+            <input
+              type="text"
+              id="encyclopedia-search"
+              placeholder="Search terms like 'Urban Tithe', 'Halphadites', 'Mi’yam relics', 'Wifuni Zulun City War'..."
+            />
+          </div>
+          <div id="encyclopedia-results" class="encyclopedia-results">
+            <!-- Filled by JS -->
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
