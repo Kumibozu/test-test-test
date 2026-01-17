@@ -1,0 +1,65 @@
+{
+  "timeline": [
+    {
+      "era": "Collapse of the Era of the Globe",
+      "range": "0–120 A.C.",
+      "events": [
+        {
+          "title": "Fall of the Global Concord",
+          "text": "The last remnants of the Era of the Globe fracture under resource wars and ideological schisms."
+        },
+        {
+          "title": "Fragmentation of the Continental Councils",
+          "text": "Once‑cooperative councils turn inward, hoarding archives and weaponry."
+        }
+      ]
+    }
+  ],
+
+  "regions": {
+    "commonwealth": {
+      "name": "The Commonwealth",
+      "summary": "A revolutionary republic born from the Montague uprisings.",
+      "politics": "Layered assemblies and a powerful security apparatus.",
+      "culture": "Pamphlets, civic festivals, and the Urban Tithe.",
+      "conflicts": "Cold War with Ryenarkia and proxy struggles."
+    }
+  },
+
+  "factions": [
+    {
+      "name": "Revolutionary Commonwealth of Montague",
+      "tagline": "The idea that the governed may govern.",
+      "symbol": "A broken chain encircling a ballot.",
+      "slogan": "No crown above the crowd.",
+      "ideology": "Revolutionary republicanism and civic duty.",
+      "figures": "Montague, early pamphleteers."
+    }
+  ],
+
+  "culture": [
+    {
+      "name": "Montague’s Pamphlets",
+      "type": "Propaganda",
+      "description": "Cheaply printed leaflets arguing for civic sovereignty.",
+      "notes": "Often annotated by later readers."
+    }
+  ],
+
+  "characters": [
+    {
+      "name": "Darwues the Emperor",
+      "role": "Ryenarkian Emperor",
+      "description": "A commander crowned under Halphadite prophecy.",
+      "notes": "Official chronicles present him as inevitable."
+    }
+  ],
+
+  "encyclopedia": [
+    {
+      "term": "Urban Tithe",
+      "tags": ["Economy", "Commonwealth"],
+      "text": "A mandatory levy on city dwellers."
+    }
+  ]
+}
