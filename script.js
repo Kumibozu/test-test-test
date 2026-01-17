@@ -16,46 +16,35 @@ navButtons.forEach((btn) => {
 });
 
 // ------------------------------
-// Helper: group timeline into eras
+// Helpers
 // ------------------------------
 function groupTimeline(entries) {
   const eras = {};
-
   entries.forEach((e) => {
-    // Use the first tag as a rough "era" bucket
-    const eraKey = e.tags[0] || "General";
-
+    const eraKey = e.tags && e.tags[0] ? e.tags[0] : "General";
     if (!eras[eraKey]) eras[eraKey] = [];
     eras[eraKey].push(e);
   });
-
   return eras;
 }
 
-// ------------------------------
-// Helper: find related lore by shared tags
-// ------------------------------
 function findRelated(data, entry) {
   if (!entry || !entry.tags) return {};
-
   const tagSet = new Set(entry.tags);
 
   function match(list) {
-    return list.filter((item) =>
-      item.tags && item.tags.some((t) => tagSet.has(t))
+    return list.filter(
+      (item) => item.tags && item.tags.some((t) => tagSet.has(t))
     );
   }
 
   return {
-    nations: match(data.nations),
-    regions: match(data.regions),
-    factions: match(data.factions),
-    cultures: match(data.cultures),
-    religions: match(data.religions),
-    characters: match(data.characters),
-    timeline: match(data.timeline),
-    encyclopedia: match(data.encyclopedia),
-    artifacts: match(data.artifacts),
+    regions: match(data.regions || []),
+    factions: match(data.factions || []),
+    cultures: match(data.cultures || []),
+    characters: match(data.characters || []),
+    timeline: match(data.timeline || []),
+    encyclopedia: match(data.encyclopedia || []),
   };
 }
 
@@ -65,15 +54,14 @@ function findRelated(data, entry) {
 fetch("lore.json")
   .then((res) => res.json())
   .then((data) => {
-    console.log("LORE DATA:", data);
     window.LORE_DATA = data;
 
-    renderTimeline(data.timeline);
-    renderRegions(data.regions, data);
-    renderFactions(data.factions);
-    renderCultures(data.cultures);
-    renderCharacters(data.characters, data);
-    renderEncyclopedia(data.encyclopedia);
+    renderTimeline(data.timeline || []);
+    renderRegions(data.regions || [], data);
+    renderFactions(data.factions || []);
+    renderCulture(data.cultures || data.culture || []);
+    renderCharacters(data.characters || [], data);
+    renderEncyclopedia(data.encyclopedia || []);
     enableGlobalSearch(data);
   })
   .catch((err) => {
@@ -81,7 +69,7 @@ fetch("lore.json")
   });
 
 // ------------------------------
-// Timeline (grouped into eras)
+// Timeline
 // ------------------------------
 function renderTimeline(entries) {
   const container = document.getElementById("timeline-container");
@@ -103,7 +91,7 @@ function renderTimeline(entries) {
       details.innerHTML = `
         <summary>${e.name}</summary>
         <p>${e.description}</p>
-        <p class="entry-tags">${e.tags.join(" • ")}</p>
+        <p class="entry-tags">${(e.tags || []).join(" • ")}</p>
       `;
       eraDiv.appendChild(details);
     });
@@ -113,14 +101,14 @@ function renderTimeline(entries) {
 }
 
 // ------------------------------
-// Regions (Atlas) – array + related
+// Atlas (Regions)
 // ------------------------------
 function renderRegions(regions, data) {
   const list = document.getElementById("region-list");
   const detail = document.getElementById("region-detail");
 
   list.innerHTML = "";
-  detail.innerHTML = "<p>Select a region.</p>";
+  detail.innerHTML = "Select a region to view its dossier.";
 
   regions.forEach((r, index) => {
     const li = document.createElement("li");
@@ -147,14 +135,11 @@ function renderRegions(regions, data) {
 
     detail.innerHTML = `
       <h3>${r.name}</h3>
-      <p><strong>Tags:</strong> ${r.tags.join(" • ")}</p>
-      <p>${r.description}</p>
+      <p>${r.description || ""}</p>
+      <p><strong>Tags:</strong> ${(r.tags || []).join(" • ")}</p>
 
       <details>
         <summary>Related Lore</summary>
-        <p><strong>Nations:</strong> ${related.nations
-          .map((n) => n.name)
-          .join(", ") || "None"}</p>
         <p><strong>Factions:</strong> ${related.factions
           .map((f) => f.name)
           .join(", ") || "None"}</p>
@@ -170,7 +155,7 @@ function renderRegions(regions, data) {
 }
 
 // ------------------------------
-// Factions – new schema
+// Factions
 // ------------------------------
 function renderFactions(factions) {
   const container = document.getElementById("faction-cards");
@@ -182,9 +167,9 @@ function renderFactions(factions) {
 
     card.innerHTML = `
       <h3>${f.name}</h3>
-      <p class="tagline">${f.type}</p>
-      <p>${f.description}</p>
-      <p><strong>Tags:</strong> ${f.tags.join(" • ")}</p>
+      <p class="tagline">${f.type || ""}</p>
+      <p>${f.description || ""}</p>
+      <p><strong>Tags:</strong> ${(f.tags || []).join(" • ")}</p>
     `;
 
     container.appendChild(card);
@@ -192,9 +177,9 @@ function renderFactions(factions) {
 }
 
 // ------------------------------
-// Cultures – plural, new schema
+// Culture
 // ------------------------------
-function renderCultures(items) {
+function renderCulture(items) {
   const container = document.getElementById("culture-cards");
   container.innerHTML = "";
 
@@ -204,8 +189,9 @@ function renderCultures(items) {
 
     card.innerHTML = `
       <h3>${c.name}</h3>
-      <p><strong>Tags:</strong> ${c.tags.join(" • ")}</p>
-      <p>${c.description}</p>
+      <p class="tagline">${c.type || ""}</p>
+      <p>${c.description || ""}</p>
+      <p><strong>Tags:</strong> ${(c.tags || []).join(" • ")}</p>
     `;
 
     container.appendChild(card);
@@ -213,7 +199,7 @@ function renderCultures(items) {
 }
 
 // ------------------------------
-// Characters – with related lore
+// Characters
 // ------------------------------
 function renderCharacters(chars, data) {
   const container = document.getElementById("character-cards");
@@ -227,15 +213,12 @@ function renderCharacters(chars, data) {
 
     card.innerHTML = `
       <h3>${ch.name}</h3>
-      <p class="tagline">${ch.role}</p>
-      <p>${ch.description}</p>
-      <p><strong>Tags:</strong> ${ch.tags.join(" • ")}</p>
+      <p class="tagline">${ch.role || ""}</p>
+      <p>${ch.description || ""}</p>
+      <p><strong>Tags:</strong> ${(ch.tags || []).join(" • ")}</p>
 
       <details>
         <summary>Related Lore</summary>
-        <p><strong>Nations:</strong> ${related.nations
-          .map((n) => n.name)
-          .join(", ") || "None"}</p>
         <p><strong>Regions:</strong> ${related.regions
           .map((r) => r.name)
           .join(", ") || "None"}</p>
@@ -253,7 +236,7 @@ function renderCharacters(chars, data) {
 }
 
 // ------------------------------
-// Encyclopedia – name/description + local search
+// Encyclopedia
 // ------------------------------
 function renderEncyclopedia(entries) {
   const container = document.getElementById("encyclopedia-results");
@@ -266,8 +249,8 @@ function renderEncyclopedia(entries) {
       div.className = "encyclopedia-entry";
       div.innerHTML = `
         <h3>${e.name}</h3>
-        <p class="entry-tags">${e.tags.join(" • ")}</p>
-        <p>${e.description}</p>
+        <p class="entry-tags">${(e.tags || []).join(" • ")}</p>
+        <p>${e.description || ""}</p>
       `;
       container.appendChild(div);
     });
@@ -280,15 +263,15 @@ function renderEncyclopedia(entries) {
     const filtered = entries.filter(
       (e) =>
         e.name.toLowerCase().includes(q) ||
-        e.description.toLowerCase().includes(q) ||
-        e.tags.some((t) => t.toLowerCase().includes(q))
+        (e.description || "").toLowerCase().includes(q) ||
+        (e.tags || []).some((t) => t.toLowerCase().includes(q))
     );
     display(filtered);
   });
 }
 
 // ------------------------------
-// Global Search – across all lore
+// Global Search
 // ------------------------------
 function buildSearchIndex(data) {
   const index = [];
@@ -300,7 +283,7 @@ function buildSearchIndex(data) {
       index.push({
         category,
         name: item.name,
-        description: item.description,
+        description: item.description || "",
         tags: item.tags || [],
       });
     });
@@ -334,7 +317,7 @@ function enableGlobalSearch(data) {
       .map(
         (i) => `
       <div class="search-result">
-        <strong>${i.name}</strong> <em>(${i.category})</em>
+        <strong>${i.name}</strong> <span>(${i.category})</span>
         <p>${i.description}</p>
       </div>
     `
