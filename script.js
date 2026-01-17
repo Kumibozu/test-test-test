@@ -21,10 +21,11 @@ navButtons.forEach((btn) => {
 fetch("lore.json")
   .then((res) => res.json())
   .then((data) => {
+    console.log("LORE DATA:", data);
     renderTimeline(data.timeline);
     renderRegions(data.regions);
     renderFactions(data.factions);
-    renderCulture(data.culture);
+    renderCultures(data.cultures);
     renderCharacters(data.characters);
     renderEncyclopedia(data.encyclopedia);
   })
@@ -33,36 +34,28 @@ fetch("lore.json")
   });
 
 // ------------------------------
-// Timeline
+// Timeline (flat list of entries)
 // ------------------------------
 function renderTimeline(timeline) {
   const container = document.getElementById("timeline-container");
   container.innerHTML = "";
 
-  timeline.forEach((era) => {
-    const eraDiv = document.createElement("div");
-    eraDiv.className = "timeline-era";
+  timeline.forEach((entry) => {
+    const div = document.createElement("div");
+    div.className = "timeline-era";
 
-    eraDiv.innerHTML = `
-      <h3>${era.era}</h3>
-      <p class="era-range">${era.range}</p>
+    div.innerHTML = `
+      <h3>${entry.name}</h3>
+      <p class="era-range">${entry.tags.join(" • ")}</p>
+      <p>${entry.description}</p>
     `;
 
-    era.events.forEach((ev) => {
-      const details = document.createElement("details");
-      details.innerHTML = `
-        <summary>${ev.title}</summary>
-        <p>${ev.text}</p>
-      `;
-      eraDiv.appendChild(details);
-    });
-
-    container.appendChild(eraDiv);
+    container.appendChild(div);
   });
 }
 
 // ------------------------------
-// Regions (Atlas)
+// Regions (Atlas) – now an array
 // ------------------------------
 function renderRegions(regions) {
   const list = document.getElementById("region-list");
@@ -71,17 +64,17 @@ function renderRegions(regions) {
   list.innerHTML = "";
   detail.innerHTML = "<p>Select a region.</p>";
 
-  Object.keys(regions).forEach((key, index) => {
-    const r = regions[key];
+  regions.forEach((r, index) => {
     const li = document.createElement("li");
     li.className = "region-item";
     li.textContent = r.name;
-    li.dataset.region = key;
 
     if (index === 0) li.classList.add("active");
 
     li.addEventListener("click", () => {
-      document.querySelectorAll(".region-item").forEach((i) => i.classList.remove("active"));
+      document.querySelectorAll(".region-item").forEach((i) =>
+        i.classList.remove("active")
+      );
       li.classList.add("active");
       showRegionDetail(r);
     });
@@ -94,16 +87,14 @@ function renderRegions(regions) {
   function showRegionDetail(r) {
     detail.innerHTML = `
       <h3>${r.name}</h3>
-      <p><strong>Summary:</strong> ${r.summary}</p>
-      <p><strong>Politics:</strong> ${r.politics}</p>
-      <p><strong>Culture:</strong> ${r.culture}</p>
-      <p><strong>Conflicts:</strong> ${r.conflicts}</p>
+      <p><strong>Tags:</strong> ${r.tags.join(" • ")}</p>
+      <p>${r.description}</p>
     `;
   }
 }
 
 // ------------------------------
-// Factions
+// Factions – new schema
 // ------------------------------
 function renderFactions(factions) {
   const container = document.getElementById("faction-cards");
@@ -115,13 +106,9 @@ function renderFactions(factions) {
 
     card.innerHTML = `
       <h3>${f.name}</h3>
-      <p class="tagline">${f.tagline}</p>
-      <ul>
-        <li><strong>Symbol:</strong> ${f.symbol}</li>
-        <li><strong>Slogan:</strong> ${f.slogan}</li>
-        <li><strong>Ideology:</strong> ${f.ideology}</li>
-        <li><strong>Key Figures:</strong> ${f.figures}</li>
-      </ul>
+      <p class="tagline">${f.type}</p>
+      <p>${f.description}</p>
+      <p><strong>Tags:</strong> ${f.tags.join(" • ")}</p>
     `;
 
     container.appendChild(card);
@@ -129,9 +116,9 @@ function renderFactions(factions) {
 }
 
 // ------------------------------
-// Culture
+// Cultures – plural, new schema
 // ------------------------------
-function renderCulture(items) {
+function renderCultures(items) {
   const container = document.getElementById("culture-cards");
   container.innerHTML = "";
 
@@ -141,9 +128,8 @@ function renderCulture(items) {
 
     card.innerHTML = `
       <h3>${c.name}</h3>
-      <p class="tagline">${c.type}</p>
+      <p><strong>Tags:</strong> ${c.tags.join(" • ")}</p>
       <p>${c.description}</p>
-      <p><strong>Notes:</strong> ${c.notes}</p>
     `;
 
     container.appendChild(card);
@@ -151,7 +137,7 @@ function renderCulture(items) {
 }
 
 // ------------------------------
-// Characters
+// Characters – no notes, has tags
 // ------------------------------
 function renderCharacters(chars) {
   const container = document.getElementById("character-cards");
@@ -165,7 +151,7 @@ function renderCharacters(chars) {
       <h3>${ch.name}</h3>
       <p class="tagline">${ch.role}</p>
       <p>${ch.description}</p>
-      <p><strong>Notes:</strong> ${ch.notes}</p>
+      <p><strong>Tags:</strong> ${ch.tags.join(" • ")}</p>
     `;
 
     container.appendChild(card);
@@ -173,7 +159,7 @@ function renderCharacters(chars) {
 }
 
 // ------------------------------
-// Encyclopedia
+// Encyclopedia – name/description
 // ------------------------------
 function renderEncyclopedia(entries) {
   const container = document.getElementById("encyclopedia-results");
@@ -185,9 +171,9 @@ function renderEncyclopedia(entries) {
       const div = document.createElement("article");
       div.className = "encyclopedia-entry";
       div.innerHTML = `
-        <h3>${e.term}</h3>
+        <h3>${e.name}</h3>
         <p class="entry-tags">${e.tags.join(" • ")}</p>
-        <p>${e.text}</p>
+        <p>${e.description}</p>
       `;
       container.appendChild(div);
     });
@@ -197,10 +183,11 @@ function renderEncyclopedia(entries) {
 
   search.addEventListener("input", () => {
     const q = search.value.toLowerCase();
-    const filtered = entries.filter((e) =>
-      e.term.toLowerCase().includes(q) ||
-      e.text.toLowerCase().includes(q) ||
-      e.tags.some((t) => t.toLowerCase().includes(q))
+    const filtered = entries.filter(
+      (e) =>
+        e.name.toLowerCase().includes(q) ||
+        e.description.toLowerCase().includes(q) ||
+        e.tags.some((t) => t.toLowerCase().includes(q))
     );
     display(filtered);
   });
