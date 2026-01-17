@@ -5,8 +5,8 @@
 body {
   margin: 0;
   padding: 0;
-  background: #111;
-  color: #eee;
+  background: #0d0d0d; /* original darker tone */
+  color: #e0e0e0;
   font-family: "Segoe UI", Tahoma, sans-serif;
 }
 
@@ -16,10 +16,23 @@ body {
   height: 100vh;
 }
 
+/* Center content and reduce width */
+.app-body {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  max-width: 1200px;      /* narrower */
+  margin: 0 auto;         /* centered */
+}
+
+/* ------------------------------
+   Header
+------------------------------ */
+
 .app-header {
   padding: 1.5rem;
-  background: #1a1a1a;
-  border-bottom: 1px solid #333;
+  background: #141414;
+  border-bottom: 1px solid #222;
   text-align: center;
 }
 
@@ -31,7 +44,7 @@ body {
 
 .subtitle {
   margin: 0.5rem 0 1rem;
-  color: #bbb;
+  color: #aaa;
   font-size: 0.95rem;
 }
 
@@ -41,40 +54,40 @@ body {
 
 .global-search-box {
   margin: 1rem auto 0;
-  width: 80%;
-  max-width: 600px;
+  width: 70%;
+  max-width: 500px;
 }
 
 #global-search {
   width: 100%;
-  padding: 0.7rem;
+  padding: 0.6rem;
   font-size: 1rem;
-  border-radius: 6px;
-  border: 1px solid #555;
-  background: #222;
+  border-radius: 4px;
+  border: 1px solid #333;
+  background: #1a1a1a;
   color: #eee;
 }
 
 #global-search:focus {
   outline: none;
-  border-color: #888;
+  border-color: #555;
 }
 
 .global-results {
-  width: 80%;
-  max-width: 600px;
+  width: 70%;
+  max-width: 500px;
   margin: 0.5rem auto 0;
-  max-height: 250px;
+  max-height: 220px;
   overflow-y: auto;
-  background: #1a1a1a;
-  border: 1px solid #333;
-  border-radius: 6px;
+  background: #141414;
+  border: 1px solid #222;
+  border-radius: 4px;
   padding: 0.5rem 1rem;
 }
 
 .search-result {
   padding: 0.5rem 0;
-  border-bottom: 1px solid #333;
+  border-bottom: 1px solid #222;
 }
 
 .search-result:last-child {
@@ -82,23 +95,13 @@ body {
 }
 
 .search-result strong {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   color: #fff;
 }
 
 .search-result em {
-  color: #888;
-  font-size: 0.9rem;
-}
-
-/* ------------------------------
-   App Body
------------------------------- */
-
-.app-body {
-  display: flex;
-  flex: 1;
-  overflow: hidden;
+  color: #777;
+  font-size: 0.85rem;
 }
 
 /* ------------------------------
@@ -106,20 +109,20 @@ body {
 ------------------------------ */
 
 .sidebar {
-  width: 220px;
-  background: #1a1a1a;
-  border-right: 1px solid #333;
+  width: 200px;
+  background: #141414;
+  border-right: 1px solid #222;
   padding: 1rem;
   overflow-y: auto;
 }
 
 .nav-btn {
   width: 100%;
-  padding: 0.7rem;
-  margin-bottom: 0.5rem;
-  background: #222;
-  border: 1px solid #444;
-  color: #eee;
+  padding: 0.6rem;
+  margin-bottom: 0.4rem;
+  background: #1a1a1a;
+  border: 1px solid #333;
+  color: #ddd;
   cursor: pointer;
   border-radius: 4px;
   text-align: left;
@@ -127,12 +130,12 @@ body {
 }
 
 .nav-btn:hover {
-  background: #333;
+  background: #222;
 }
 
 .nav-btn.active {
-  background: #444;
-  border-color: #666;
+  background: #333;
+  border-color: #555;
 }
 
 /* ------------------------------
@@ -141,7 +144,7 @@ body {
 
 .content {
   flex: 1;
-  padding: 1.5rem;
+  padding: 1.2rem;
   overflow-y: auto;
 }
 
@@ -154,7 +157,7 @@ body {
 }
 
 .panel-intro {
-  color: #bbb;
+  color: #aaa;
   margin-bottom: 1rem;
 }
 
@@ -163,11 +166,11 @@ body {
 ------------------------------ */
 
 .timeline-era {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.2rem;
   padding: 1rem;
-  background: #1a1a1a;
-  border: 1px solid #333;
-  border-radius: 6px;
+  background: #141414;
+  border: 1px solid #222;
+  border-radius: 4px;
 }
 
 .timeline-era h2 {
@@ -176,15 +179,15 @@ body {
 }
 
 .timeline-era details {
-  margin: 0.5rem 0;
+  margin: 0.4rem 0;
   padding: 0.5rem;
-  background: #222;
+  background: #1a1a1a;
   border-radius: 4px;
-  border: 1px solid #333;
+  border: 1px solid #222;
 }
 
 .entry-tags {
-  color: #888;
+  color: #777;
   font-size: 0.85rem;
 }
 
@@ -199,19 +202,19 @@ body {
 
 .atlas-map {
   flex: 1;
-  background: #1a1a1a;
-  border: 1px solid #333;
-  border-radius: 6px;
+  background: #141414;
+  border: 1px solid #222;
+  border-radius: 4px;
   padding: 1rem;
 }
 
 .map-placeholder {
   text-align: center;
-  color: #777;
+  color: #666;
 }
 
 .atlas-regions {
-  width: 300px;
+  width: 260px;
   display: flex;
   flex-direction: column;
 }
@@ -220,32 +223,32 @@ body {
   list-style: none;
   padding: 0;
   margin: 0 0 1rem;
-  border: 1px solid #333;
-  background: #1a1a1a;
-  border-radius: 6px;
+  border: 1px solid #222;
+  background: #141414;
+  border-radius: 4px;
   overflow-y: auto;
-  max-height: 300px;
+  max-height: 260px;
 }
 
 .region-item {
-  padding: 0.7rem;
-  border-bottom: 1px solid #333;
+  padding: 0.6rem;
+  border-bottom: 1px solid #222;
   cursor: pointer;
 }
 
 .region-item:hover {
-  background: #333;
+  background: #222;
 }
 
 .region-item.active {
-  background: #444;
+  background: #333;
 }
 
 .region-detail {
   padding: 1rem;
-  background: #1a1a1a;
-  border: 1px solid #333;
-  border-radius: 6px;
+  background: #141414;
+  border: 1px solid #222;
+  border-radius: 4px;
 }
 
 /* ------------------------------
@@ -254,15 +257,15 @@ body {
 
 .cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
   gap: 1rem;
 }
 
 .card {
-  background: #1a1a1a;
-  border: 1px solid #333;
+  background: #141414;
+  border: 1px solid #222;
   padding: 1rem;
-  border-radius: 6px;
+  border-radius: 4px;
 }
 
 .card h3 {
@@ -270,7 +273,7 @@ body {
 }
 
 .tagline {
-  color: #bbb;
+  color: #aaa;
   font-size: 0.9rem;
 }
 
@@ -284,11 +287,11 @@ body {
 
 #encyclopedia-search {
   width: 100%;
-  padding: 0.7rem;
-  background: #222;
-  border: 1px solid #444;
+  padding: 0.6rem;
+  background: #1a1a1a;
+  border: 1px solid #333;
   color: #eee;
-  border-radius: 6px;
+  border-radius: 4px;
 }
 
 .encyclopedia-results {
@@ -296,14 +299,14 @@ body {
 }
 
 .encyclopedia-entry {
-  background: #1a1a1a;
-  border: 1px solid #333;
+  background: #141414;
+  border: 1px solid #222;
   padding: 1rem;
   margin-bottom: 1rem;
-  border-radius: 6px;
+  border-radius: 4px;
 }
 
 .entry-tags {
-  color: #888;
+  color: #777;
   font-size: 0.85rem;
 }
