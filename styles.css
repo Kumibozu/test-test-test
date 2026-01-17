@@ -5,8 +5,8 @@
 body {
   margin: 0;
   padding: 0;
-  background: #0d0d0d; /* original darker tone */
-  color: #e0e0e0;
+  background: #0b0b0b; /* deep charcoal */
+  color: #e6e6e6;
   font-family: "Segoe UI", Tahoma, sans-serif;
 }
 
@@ -16,13 +16,13 @@ body {
   height: 100vh;
 }
 
-/* Center content and reduce width */
+/* Mid-width layout */
 .app-body {
   display: flex;
   flex: 1;
   overflow: hidden;
-  max-width: 1200px;      /* narrower */
-  margin: 0 auto;         /* centered */
+  max-width: 1500px;   /* between the two previous sizes */
+  margin: 0 auto;
 }
 
 /* ------------------------------
@@ -32,19 +32,19 @@ body {
 .app-header {
   padding: 1.5rem;
   background: #141414;
-  border-bottom: 1px solid #222;
+  border-bottom: 1px solid #2a2a2a;
   text-align: center;
 }
 
 .app-header h1 {
   margin: 0;
   font-size: 2rem;
-  color: #fff;
+  color: #ff8c32; /* warm orange accent */
 }
 
 .subtitle {
   margin: 0.5rem 0 1rem;
-  color: #aaa;
+  color: #c7c7c7;
   font-size: 0.95rem;
 }
 
@@ -54,13 +54,13 @@ body {
 
 .global-search-box {
   margin: 1rem auto 0;
-  width: 70%;
-  max-width: 500px;
+  width: 75%;
+  max-width: 650px;
 }
 
 #global-search {
   width: 100%;
-  padding: 0.6rem;
+  padding: 0.7rem;
   font-size: 1rem;
   border-radius: 4px;
   border: 1px solid #333;
@@ -70,14 +70,15 @@ body {
 
 #global-search:focus {
   outline: none;
-  border-color: #555;
+  border-color: #ff8c32; /* orange glow */
+  box-shadow: 0 0 6px #ff8c32;
 }
 
 .global-results {
-  width: 70%;
-  max-width: 500px;
+  width: 75%;
+  max-width: 650px;
   margin: 0.5rem auto 0;
-  max-height: 220px;
+  max-height: 240px;
   overflow-y: auto;
   background: #141414;
   border: 1px solid #222;
@@ -90,18 +91,8 @@ body {
   border-bottom: 1px solid #222;
 }
 
-.search-result:last-child {
-  border-bottom: none;
-}
-
 .search-result strong {
-  font-size: 1.05rem;
-  color: #fff;
-}
-
-.search-result em {
-  color: #777;
-  font-size: 0.85rem;
+  color: #ff8c32;
 }
 
 /* ------------------------------
@@ -109,7 +100,7 @@ body {
 ------------------------------ */
 
 .sidebar {
-  width: 200px;
+  width: 230px;
   background: #141414;
   border-right: 1px solid #222;
   padding: 1rem;
@@ -118,8 +109,8 @@ body {
 
 .nav-btn {
   width: 100%;
-  padding: 0.6rem;
-  margin-bottom: 0.4rem;
+  padding: 0.7rem;
+  margin-bottom: 0.5rem;
   background: #1a1a1a;
   border: 1px solid #333;
   color: #ddd;
@@ -131,11 +122,13 @@ body {
 
 .nav-btn:hover {
   background: #222;
+  border-color: #ff8c32;
 }
 
 .nav-btn.active {
-  background: #333;
-  border-color: #555;
+  background: #2a2a2a;
+  border-color: #ff8c32;
+  color: #ff8c32;
 }
 
 /* ------------------------------
@@ -144,7 +137,7 @@ body {
 
 .content {
   flex: 1;
-  padding: 1.2rem;
+  padding: 1.5rem;
   overflow-y: auto;
 }
 
@@ -157,7 +150,7 @@ body {
 }
 
 .panel-intro {
-  color: #aaa;
+  color: #c7c7c7;
   margin-bottom: 1rem;
 }
 
@@ -166,7 +159,7 @@ body {
 ------------------------------ */
 
 .timeline-era {
-  margin-bottom: 1.2rem;
+  margin-bottom: 1.5rem;
   padding: 1rem;
   background: #141414;
   border: 1px solid #222;
@@ -175,19 +168,19 @@ body {
 
 .timeline-era h2 {
   margin-top: 0;
-  color: #fff;
+  color: #ff8c32;
 }
 
 .timeline-era details {
   margin: 0.4rem 0;
-  padding: 0.5rem;
+  padding: 0.6rem;
   background: #1a1a1a;
   border-radius: 4px;
   border: 1px solid #222;
 }
 
 .entry-tags {
-  color: #777;
+  color: #ffb067; /* soft orange */
   font-size: 0.85rem;
 }
 
@@ -210,103 +203,13 @@ body {
 
 .map-placeholder {
   text-align: center;
-  color: #666;
+  color: #777;
 }
 
 .atlas-regions {
-  width: 260px;
+  width: 300px;
   display: flex;
   flex-direction: column;
 }
 
-.region-list {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 1rem;
-  border: 1px solid #222;
-  background: #141414;
-  border-radius: 4px;
-  overflow-y: auto;
-  max-height: 260px;
-}
-
-.region-item {
-  padding: 0.6rem;
-  border-bottom: 1px solid #222;
-  cursor: pointer;
-}
-
-.region-item:hover {
-  background: #222;
-}
-
-.region-item.active {
-  background: #333;
-}
-
-.region-detail {
-  padding: 1rem;
-  background: #141414;
-  border: 1px solid #222;
-  border-radius: 4px;
-}
-
-/* ------------------------------
-   Cards (Factions, Culture, Characters)
------------------------------- */
-
-.cards-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-  gap: 1rem;
-}
-
-.card {
-  background: #141414;
-  border: 1px solid #222;
-  padding: 1rem;
-  border-radius: 4px;
-}
-
-.card h3 {
-  margin-top: 0;
-}
-
-.tagline {
-  color: #aaa;
-  font-size: 0.9rem;
-}
-
-/* ------------------------------
-   Encyclopedia
------------------------------- */
-
-.search-box {
-  margin-bottom: 1rem;
-}
-
-#encyclopedia-search {
-  width: 100%;
-  padding: 0.6rem;
-  background: #1a1a1a;
-  border: 1px solid #333;
-  color: #eee;
-  border-radius: 4px;
-}
-
-.encyclopedia-results {
-  margin-top: 1rem;
-}
-
-.encyclopedia-entry {
-  background: #141414;
-  border: 1px solid #222;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  border-radius: 4px;
-}
-
-.entry-tags {
-  color: #777;
-  font-size: 0.85rem;
-}
+.region
