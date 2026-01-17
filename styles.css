@@ -1,5 +1,5 @@
 /* -----------------------------------------
-   ROOT THEME — Parchment & Ink Aesthetic
+   ROOT THEME — Parchment & Ink
 ----------------------------------------- */
 
 :root {
@@ -43,12 +43,12 @@ body {
 }
 
 /* -----------------------------------------
-   APP SHELL — 1.5× Wider
+   APP SHELL
 ----------------------------------------- */
 
 .app-shell {
   width: 100%;
-  max-width: 1800px; /* 1.5× wider than original 1200px */
+  max-width: 1800px;
   margin: 16px;
   background: linear-gradient(135deg, #1b1510, #120e0b);
   border-radius: 16px;
@@ -213,7 +213,7 @@ body {
 }
 
 /* -----------------------------------------
-   TIMELINE (Era Grouping)
+   TIMELINE
 ----------------------------------------- */
 
 .timeline-era {
@@ -230,20 +230,20 @@ body {
   color: var(--accent-soft);
 }
 
-details {
+.timeline-era details {
   margin: 6px 0;
   background: rgba(243, 226, 196, 0.03);
   border-radius: 6px;
   padding: 6px 8px;
 }
 
-details summary {
+.timeline-era summary {
   cursor: pointer;
   font-size: 0.85rem;
   color: var(--parchment);
 }
 
-details p {
+.timeline-era p {
   margin: 4px 0;
   font-size: 0.85rem;
   color: var(--text-muted);
@@ -276,6 +276,11 @@ details p {
   font-size: 0.85rem;
 }
 
+.map-note {
+  font-size: 0.78rem;
+  opacity: 0.9;
+}
+
 .atlas-regions {
   display: grid;
   grid-template-columns: 160px 1fr;
@@ -304,6 +309,11 @@ details p {
 .region-item.active {
   background: rgba(242, 210, 160, 0.12);
   color: var(--parchment);
+}
+
+.region-detail {
+  font-size: 0.85rem;
+  color: var(--text-muted);
 }
 
 /* -----------------------------------------
@@ -340,6 +350,10 @@ details p {
 /* -----------------------------------------
    ENCYCLOPEDIA
 ----------------------------------------- */
+
+.search-box {
+  margin-bottom: 10px;
+}
 
 #encyclopedia-search {
   width: 100%;
@@ -402,6 +416,10 @@ details p {
   .sidebar {
     flex-direction: row;
     overflow-x: auto;
+  }
+
+  .nav-btn {
+    white-space: nowrap;
   }
 }
 
