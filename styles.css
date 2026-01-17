@@ -1,464 +1,309 @@
-:root {
-  --bg: #15110f;
-  --bg-alt: #1f1915;
-  --parchment: #f3e2c4;
-  --parchment-soft: #e3d1ae;
-  --ink: #2b2118;
-  --accent: #c28b3b;
-  --accent-soft: #e0b86a;
-  --danger: #b34747;
-  --text-muted: #c9b89a;
-  --border-soft: #3a3026;
-  --shadow-soft: 0 8px 24px rgba(0, 0, 0, 0.4);
-  --radius: 10px;
-  --transition-fast: 0.18s ease-out;
-  --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-display: "Georgia", "Times New Roman", serif;
-}
+/* ------------------------------
+   Base Layout
+------------------------------ */
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-html,
 body {
   margin: 0;
   padding: 0;
-  height: 100%;
-  background: radial-gradient(circle at top, #3b2a1a 0, #15110f 55%, #050304 100%);
-  color: var(--parchment);
-  font-family: var(--font-main);
+  background: #111;
+  color: #eee;
+  font-family: "Segoe UI", Tahoma, sans-serif;
 }
-
-body {
-  display: flex;
-  justify-content: center;
-  align-items: stretch;
-}
-
-/* APP SHELL */
 
 .app-shell {
-  width: 100%;
-  max-width: 1200px;
-  margin: 16px;
-  background: linear-gradient(135deg, #1b1510, #120e0b);
-  border-radius: 16px;
-  border: 1px solid rgba(255, 245, 220, 0.08);
-  box-shadow: var(--shadow-soft);
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  height: 100vh;
 }
 
 .app-header {
-  padding: 18px 22px 12px;
-  border-bottom: 1px solid rgba(255, 245, 220, 0.08);
-  background: radial-gradient(circle at top left, #3b2a1a 0, #15110f 55%);
+  padding: 1.5rem;
+  background: #1a1a1a;
+  border-bottom: 1px solid #333;
+  text-align: center;
 }
 
 .app-header h1 {
   margin: 0;
-  font-family: var(--font-display);
-  font-size: 1.8rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  font-size: 2rem;
+  color: #fff;
 }
 
 .subtitle {
-  margin: 6px 0 0;
-  font-size: 0.9rem;
-  color: var(--text-muted);
+  margin: 0.5rem 0 1rem;
+  color: #bbb;
+  font-size: 0.95rem;
 }
 
-/* LAYOUT */
+/* ------------------------------
+   Global Search
+------------------------------ */
+
+.global-search-box {
+  margin: 1rem auto 0;
+  width: 80%;
+  max-width: 600px;
+}
+
+#global-search {
+  width: 100%;
+  padding: 0.7rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #555;
+  background: #222;
+  color: #eee;
+}
+
+#global-search:focus {
+  outline: none;
+  border-color: #888;
+}
+
+.global-results {
+  width: 80%;
+  max-width: 600px;
+  margin: 0.5rem auto 0;
+  max-height: 250px;
+  overflow-y: auto;
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+}
+
+.search-result {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #333;
+}
+
+.search-result:last-child {
+  border-bottom: none;
+}
+
+.search-result strong {
+  font-size: 1.1rem;
+  color: #fff;
+}
+
+.search-result em {
+  color: #888;
+  font-size: 0.9rem;
+}
+
+/* ------------------------------
+   App Body
+------------------------------ */
 
 .app-body {
-  display: grid;
-  grid-template-columns: 240px 1fr;
-  min-height: 540px;
-  max-height: calc(100vh - 80px);
+  display: flex;
+  flex: 1;
+  overflow: hidden;
 }
 
-/* SIDEBAR */
+/* ------------------------------
+   Sidebar Navigation
+------------------------------ */
 
 .sidebar {
-  background: linear-gradient(180deg, #18120e, #100c09);
-  border-right: 1px solid rgba(255, 245, 220, 0.08);
-  padding: 10px 8px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+  width: 220px;
+  background: #1a1a1a;
+  border-right: 1px solid #333;
+  padding: 1rem;
+  overflow-y: auto;
 }
 
 .nav-btn {
   width: 100%;
-  text-align: left;
-  padding: 8px 10px;
-  border-radius: 8px;
-  border: 1px solid transparent;
-  background: transparent;
-  color: var(--text-muted);
-  font-size: 0.85rem;
+  padding: 0.7rem;
+  margin-bottom: 0.5rem;
+  background: #222;
+  border: 1px solid #444;
+  color: #eee;
   cursor: pointer;
-  transition: background var(--transition-fast), color var(--transition-fast), border var(--transition-fast),
-    transform var(--transition-fast);
+  border-radius: 4px;
+  text-align: left;
+  transition: 0.2s;
 }
 
 .nav-btn:hover {
-  background: rgba(242, 210, 160, 0.06);
-  color: var(--parchment);
-  border-color: rgba(242, 210, 160, 0.18);
-  transform: translateX(1px);
+  background: #333;
 }
 
 .nav-btn.active {
-  background: rgba(242, 210, 160, 0.12);
-  color: var(--parchment);
-  border-color: rgba(242, 210, 160, 0.4);
+  background: #444;
+  border-color: #666;
 }
 
-/* CONTENT */
+/* ------------------------------
+   Content Panels
+------------------------------ */
 
 .content {
-  padding: 14px 16px 16px;
+  flex: 1;
+  padding: 1.5rem;
   overflow-y: auto;
 }
 
 .panel {
   display: none;
-  animation: fadeIn 0.2s ease-out;
 }
 
 .panel.active {
   display: block;
 }
 
-.panel h2 {
-  margin: 0 0 6px;
-  font-family: var(--font-display);
-  font-size: 1.4rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-
 .panel-intro {
-  margin: 0 0 14px;
-  font-size: 0.9rem;
-  color: var(--text-muted);
+  color: #bbb;
+  margin-bottom: 1rem;
 }
 
-/* TIMELINE */
-
-.timeline {
-  display: grid;
-  gap: 10px;
-}
+/* ------------------------------
+   Timeline
+------------------------------ */
 
 .timeline-era {
-  background: rgba(15, 11, 8, 0.9);
-  border-radius: var(--radius);
-  border: 1px solid var(--border-soft);
-  padding: 10px 12px;
-}
-
-.timeline-era h3 {
-  margin: 0;
-  font-size: 1rem;
-  color: var(--accent-soft);
-}
-
-.era-range {
-  margin: 2px 0 8px;
-  font-size: 0.8rem;
-  color: var(--text-muted);
-}
-
-details {
-  margin: 4px 0;
-  background: rgba(243, 226, 196, 0.03);
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: #1a1a1a;
+  border: 1px solid #333;
   border-radius: 6px;
-  padding: 4px 6px;
 }
 
-details summary {
-  cursor: pointer;
+.timeline-era h2 {
+  margin-top: 0;
+  color: #fff;
+}
+
+.timeline-era details {
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  background: #222;
+  border-radius: 4px;
+  border: 1px solid #333;
+}
+
+.entry-tags {
+  color: #888;
   font-size: 0.85rem;
-  color: var(--parchment);
 }
 
-details p {
-  margin: 4px 0 2px;
-  font-size: 0.85rem;
-  color: var(--text-muted);
-}
-
-/* ATLAS */
+/* ------------------------------
+   Atlas Layout
+------------------------------ */
 
 .atlas-layout {
-  display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.4fr);
-  gap: 12px;
+  display: flex;
+  gap: 1rem;
 }
 
 .atlas-map {
-  background: rgba(15, 11, 8, 0.9);
-  border-radius: var(--radius);
-  border: 1px solid var(--border-soft);
-  padding: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  flex: 1;
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 6px;
+  padding: 1rem;
 }
 
 .map-placeholder {
-  border: 1px dashed rgba(242, 210, 160, 0.3);
-  border-radius: 10px;
-  padding: 18px 12px;
   text-align: center;
-  color: var(--text-muted);
-  font-size: 0.85rem;
-}
-
-.map-placeholder p {
-  margin: 4px 0;
-}
-
-.map-note {
-  font-size: 0.78rem;
-  opacity: 0.9;
+  color: #777;
 }
 
 .atlas-regions {
-  background: rgba(15, 11, 8, 0.9);
-  border-radius: var(--radius);
-  border: 1px solid var(--border-soft);
-  padding: 10px;
-  display: grid;
-  grid-template-columns: 150px minmax(0, 1fr);
-  gap: 8px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
 }
 
 .region-list {
   list-style: none;
-  margin: 0;
   padding: 0;
-  font-size: 0.85rem;
+  margin: 0 0 1rem;
+  border: 1px solid #333;
+  background: #1a1a1a;
+  border-radius: 6px;
+  overflow-y: auto;
+  max-height: 300px;
 }
 
 .region-item {
-  padding: 6px 7px;
-  border-radius: 6px;
+  padding: 0.7rem;
+  border-bottom: 1px solid #333;
   cursor: pointer;
-  color: var(--text-muted);
-  transition: background var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
 }
 
 .region-item:hover {
-  background: rgba(242, 210, 160, 0.06);
-  color: var(--parchment);
-  transform: translateX(1px);
+  background: #333;
 }
 
 .region-item.active {
-  background: rgba(242, 210, 160, 0.12);
-  color: var(--parchment);
+  background: #444;
 }
 
 .region-detail {
-  font-size: 0.85rem;
-  color: var(--text-muted);
+  padding: 1rem;
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 6px;
 }
 
-/* CARDS */
+/* ------------------------------
+   Cards (Factions, Culture, Characters)
+------------------------------ */
 
 .cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-  gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
 }
 
 .card {
-  background: rgba(15, 11, 8, 0.9);
-  border-radius: var(--radius);
-  border: 1px solid var(--border-soft);
-  padding: 10px 11px;
-  font-size: 0.85rem;
+  background: #1a1a1a;
+  border: 1px solid #333;
+  padding: 1rem;
+  border-radius: 6px;
 }
 
 .card h3 {
-  margin: 0 0 4px;
-  font-size: 0.95rem;
-  color: var(--accent-soft);
+  margin-top: 0;
 }
 
-.card .tagline {
-  margin: 0 0 6px;
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  font-style: italic;
+.tagline {
+  color: #bbb;
+  font-size: 0.9rem;
 }
 
-.card ul {
-  margin: 0;
-  padding-left: 16px;
-}
-
-.card li {
-  margin: 2px 0;
-}
-
-/* COLD WAR */
-
-.coldwar-layout {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 10px;
-  margin-bottom: 12px;
-}
-
-.coldwar-block {
-  background: rgba(15, 11, 8, 0.9);
-  border-radius: var(--radius);
-  border: 1px solid var(--border-soft);
-  padding: 10px 11px;
-  font-size: 0.85rem;
-}
-
-.coldwar-block h3 {
-  margin: 0 0 6px;
-  font-size: 0.95rem;
-  color: var(--accent-soft);
-}
-
-.coldwar-block ul {
-  margin: 0;
-  padding-left: 16px;
-}
-
-.coldwar-block li {
-  margin: 2px 0;
-}
-
-.tension-meter {
-  background: rgba(15, 11, 8, 0.9);
-  border-radius: var(--radius);
-  border: 1px solid var(--border-soft);
-  padding: 10px 11px;
-  font-size: 0.85rem;
-}
-
-.meter-bar {
-  width: 100%;
-  height: 10px;
-  border-radius: 999px;
-  background: rgba(242, 210, 160, 0.08);
-  overflow: hidden;
-  margin: 4px 0 6px;
-}
-
-.meter-fill {
-  width: 78%;
-  height: 100%;
-  background: linear-gradient(90deg, var(--accent), var(--danger));
-}
-
-.meter-caption {
-  margin: 0;
-  color: var(--text-muted);
-  font-size: 0.8rem;
-}
-
-/* ENCYCLOPEDIA */
+/* ------------------------------
+   Encyclopedia
+------------------------------ */
 
 .search-box {
-  margin-bottom: 10px;
+  margin-bottom: 1rem;
 }
 
 #encyclopedia-search {
   width: 100%;
-  padding: 7px 9px;
-  border-radius: 8px;
-  border: 1px solid var(--border-soft);
-  background: rgba(15, 11, 8, 0.9);
-  color: var(--parchment);
-  font-size: 0.85rem;
-}
-
-#encyclopedia-search:focus {
-  outline: none;
-  border-color: rgba(242, 210, 160, 0.4);
+  padding: 0.7rem;
+  background: #222;
+  border: 1px solid #444;
+  color: #eee;
+  border-radius: 6px;
 }
 
 .encyclopedia-results {
-  display: grid;
-  gap: 8px;
+  margin-top: 1rem;
 }
 
 .encyclopedia-entry {
-  background: rgba(15, 11, 8, 0.9);
-  border-radius: var(--radius);
-  border: 1px solid var(--border-soft);
-  padding: 8px 9px;
+  background: #1a1a1a;
+  border: 1px solid #333;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 6px;
+}
+
+.entry-tags {
+  color: #888;
   font-size: 0.85rem;
-}
-
-.encyclopedia-entry h3 {
-  margin: 0 0 4px;
-  font-size: 0.9rem;
-  color: var(--accent-soft);
-}
-
-.encyclopedia-entry .entry-tags {
-  margin: 0 0 4px;
-  font-size: 0.75rem;
-  color: var(--text-muted);
-}
-
-.encyclopedia-entry p {
-  margin: 0;
-}
-
-/* ANIMATIONS */
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(4px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* RESPONSIVE */
-
-@media (max-width: 900px) {
-  .app-body {
-    grid-template-columns: 1fr;
-  }
-
-  .sidebar {
-    flex-direction: row;
-    overflow-x: auto;
-    padding: 8px;
-  }
-
-  .nav-btn {
-    white-space: nowrap;
-    font-size: 0.8rem;
-  }
-}
-
-@media (max-width: 600px) {
-  .atlas-layout {
-    grid-template-columns: 1fr;
-  }
-
-  .atlas-regions {
-    grid-template-columns: 1fr;
-  }
 }
