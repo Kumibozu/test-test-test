@@ -2,105 +2,191 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Chronicles of Drezbaeryn</title>
+  <title>Chronicles of Drezbaeryn — Arcane Terminal Forum</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="app-shell">
-    <header class="app-header">
-      <h1>Chronicles of Drezbaeryn</h1>
-      <p class="subtitle">
-        A cartographer’s codex of nations, revolutions, and wars across Drezbaeryn.
-      </p>
+  <div class="crt-overlay"></div>
 
-      <div class="global-search-box">
-        <input id="global-search" type="text" placeholder="Search all lore…" />
+  <div class="app-frame">
+    <header class="app-header">
+      <div class="header-left">
+        <button id="sidebar-toggle" class="sidebar-toggle" aria-label="Toggle sidebar"></button>
+        <div class="title-block">
+          <h1>CHRONICLES OF DREZBAERYN</h1>
+          <p class="subtitle">
+            Arcane terminal access to nations, revolutions, and wars across Drezbaeryn.
+          </p>
+        </div>
       </div>
-      <div id="global-results" class="global-results"></div>
+
+      <div class="header-right">
+        <div class="global-search">
+          <input id="global-search" type="text" placeholder="Search all lore…" />
+        </div>
+      </div>
     </header>
 
     <div class="app-body">
-      <nav class="sidebar">
-        <button class="nav-btn active" data-target="timeline">Timeline</button>
-        <button class="nav-btn" data-target="atlas">Atlas</button>
-        <button class="nav-btn" data-target="factions">Factions</button>
-        <button class="nav-btn" data-target="culture">Culture</button>
-        <button class="nav-btn" data-target="characters">Characters</button>
-        <button class="nav-btn" data-target="encyclopedia">Encyclopedia</button>
-      </nav>
+      <aside id="sidebar" class="sidebar expanded">
+        <div class="sidebar-inner">
+          <div class="sidebar-header">
+            <span>INDEX</span>
+          </div>
+          <nav class="nav-list">
+            <button class="nav-item active" data-target="timeline">
+              <span class="nav-label">Timeline</span>
+            </button>
+            <button class="nav-item" data-target="atlas">
+              <span class="nav-label">Atlas</span>
+            </button>
+            <button class="nav-item" data-target="factions">
+              <span class="nav-label">Factions</span>
+            </button>
+            <button class="nav-item" data-target="culture">
+              <span class="nav-label">Culture</span>
+            </button>
+            <button class="nav-item" data-target="characters">
+              <span class="nav-label">Characters</span>
+            </button>
+            <button class="nav-item" data-target="encyclopedia">
+              <span class="nav-label">Encyclopedia</span>
+            </button>
+          </nav>
+        </div>
+      </aside>
 
-      <main class="content">
-        <!-- TIMELINE -->
-        <section id="timeline" class="panel active">
-          <h2>Eras & Events</h2>
-          <p class="panel-intro">
-            Browse the great eras of Drezbaeryn and open events like marginal notes in a scholar’s chronicle.
-          </p>
-          <div id="timeline-container">Loading timeline…</div>
-        </section>
+      <div id="sidebar-bar" class="sidebar-bar"></div>
 
-        <!-- ATLAS -->
-        <section id="atlas" class="panel">
-          <h2>World Atlas</h2>
-          <p class="panel-intro">
-            Explore the living map of Drezbaeryn and read regional dossiers.
-          </p>
-
-          <div class="atlas-layout">
-            <div class="atlas-map">
-              <div class="map-placeholder">
-                <p>Map Placeholder</p>
-                <p class="map-note">Embed your KML/Leaflet map here later.</p>
+      <main class="main-area">
+        <section class="panel-group">
+          <!-- TIMELINE -->
+          <section id="timeline" class="panel active">
+            <header class="panel-header">
+              <h2>ERAS & EVENTS</h2>
+              <span class="panel-meta">Threaded historical index</span>
+            </header>
+            <div class="panel-body">
+              <p class="panel-intro">
+                Browse the great eras of Drezbaeryn and open events like threads in an ancient forum of scholars.
+              </p>
+              <div id="timeline-container" class="timeline-container">
+                Loading timeline…
               </div>
             </div>
+          </section>
 
-            <div class="atlas-regions">
-              <ul id="region-list" class="region-list">Loading regions…</ul>
-              <div id="region-detail" class="region-detail">Select a region to view its dossier.</div>
+          <!-- ATLAS -->
+          <section id="atlas" class="panel">
+            <header class="panel-header">
+              <h2>WORLD ATLAS</h2>
+              <span class="panel-meta">Cartographic terminal view</span>
+            </header>
+            <div class="panel-body atlas-body">
+              <div class="atlas-map-shell">
+                <div class="atlas-map-frame">
+                  <div class="atlas-map-header">
+                    <span>ATLAS DISPLAY</span>
+                    <span class="atlas-status">SIGNAL: STABLE</span>
+                  </div>
+                  <div class="atlas-map">
+                    <div class="map-placeholder">
+                      <p>Map Placeholder</p>
+                      <p class="map-note">Wire your KML/Leaflet map into this container.</p>
+                    </div>
+                  </div>
+                  <div class="atlas-map-footer">
+                    <span class="compass-label">N</span>
+                    <span class="compass-rose"></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="atlas-dossier-shell">
+                <div class="atlas-dossier-frame">
+                  <div class="atlas-dossier-header">
+                    <span>REGION DOSSIER</span>
+                  </div>
+                  <div class="atlas-dossier-body">
+                    <ul id="region-list" class="region-list">
+                      Loading regions…
+                    </ul>
+                    <div id="region-detail" class="region-detail">
+                      Select a region to view its dossier.
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
+          </section>
+
+          <!-- FACTIONS -->
+          <section id="factions" class="panel">
+            <header class="panel-header">
+              <h2>FACTION DOSSIERS</h2>
+              <span class="panel-meta">Political blocs & covert networks</span>
+            </header>
+            <div class="panel-body">
+              <div id="faction-cards" class="cards-grid">
+                Loading factions…
+              </div>
+            </div>
+          </section>
+
+          <!-- CULTURE -->
+          <section id="culture" class="panel">
+            <header class="panel-header">
+              <h2>CULTURAL ARCHIVE</h2>
+              <span class="panel-meta">Relics, slogans, rites, and myths</span>
+            </header>
+            <div class="panel-body">
+              <div id="culture-cards" class="cards-grid">
+                Loading culture…
+              </div>
+            </div>
+          </section>
+
+          <!-- CHARACTERS -->
+          <section id="characters" class="panel">
+            <header class="panel-header">
+              <h2>PERSONNEL FILES</h2>
+              <span class="panel-meta">Figures of note</span>
+            </header>
+            <div class="panel-body">
+              <div id="character-cards" class="cards-grid">
+                Loading characters…
+              </div>
+            </div>
+          </section>
+
+          <!-- ENCYCLOPEDIA -->
+          <section id="encyclopedia" class="panel">
+            <header class="panel-header">
+              <h2>ENCYCLOPEDIA</h2>
+              <span class="panel-meta">Indexed terms & concepts</span>
+            </header>
+            <div class="panel-body">
+              <p class="panel-intro">
+                Query the indexed archive of terms, events, factions, relics, and concepts.
+              </p>
+              <div class="local-search">
+                <input id="encyclopedia-search" type="text" placeholder="Filter encyclopedia…" />
+              </div>
+              <div id="encyclopedia-results" class="encyclopedia-results">
+                Loading encyclopedia…
+              </div>
+            </div>
+          </section>
+        </section>
+
+        <section class="global-results-shell">
+          <header class="panel-header compact">
+            <h2>GLOBAL SEARCH RESULTS</h2>
+          </header>
+          <div id="global-results" class="global-results">
+            <p class="hint">Type in the search bar above to query all indexed lore.</p>
           </div>
-        </section>
-
-        <!-- FACTIONS -->
-        <section id="factions" class="panel">
-          <h2>Faction Codex</h2>
-          <p class="panel-intro">
-            Political blocs, revolutionary cells, merchant leagues, and shadow networks.
-          </p>
-          <div id="faction-cards" class="cards-grid">Loading factions…</div>
-        </section>
-
-        <!-- CULTURE -->
-        <section id="culture" class="panel">
-          <h2>Cultural Archive</h2>
-          <p class="panel-intro">
-            Artifacts, slogans, hymns, festivals, and relics preserved in the archives.
-          </p>
-          <div id="culture-cards" class="cards-grid">Loading culture…</div>
-        </section>
-
-        <!-- CHARACTERS -->
-        <section id="characters" class="panel">
-          <h2>Characters & Figures</h2>
-          <p class="panel-intro">
-            Emperors, revolutionaries, commanders, archivists, and merchant princes.
-          </p>
-          <div id="character-cards" class="cards-grid">Loading characters…</div>
-        </section>
-
-        <!-- ENCYCLOPEDIA -->
-        <section id="encyclopedia" class="panel">
-          <h2>Encyclopedia</h2>
-          <p class="panel-intro">
-            Search across terms, events, factions, relics, and concepts.
-          </p>
-
-          <div class="search-box">
-            <input id="encyclopedia-search" type="text" placeholder="Search terms…" />
-          </div>
-
-          <div id="encyclopedia-results" class="encyclopedia-results">Loading encyclopedia…</div>
         </section>
       </main>
     </div>
