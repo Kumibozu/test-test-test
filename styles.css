@@ -1,215 +1,416 @@
-/* ------------------------------
-   Base Layout
------------------------------- */
+/* -----------------------------------------
+   ROOT THEME — Parchment & Ink Aesthetic
+----------------------------------------- */
 
+:root {
+  --bg: #15110f;
+  --bg-alt: #1f1915;
+  --parchment: #f3e2c4;
+  --parchment-soft: #e3d1ae;
+  --ink: #2b2118;
+  --accent: #c28b3b;
+  --accent-soft: #e0b86a;
+  --danger: #b34747;
+  --text-muted: #c9b89a;
+  --border-soft: #3a3026;
+  --shadow-soft: 0 8px 24px rgba(0, 0, 0, 0.4);
+  --radius: 10px;
+  --transition-fast: 0.18s ease-out;
+  --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-display: "Georgia", "Times New Roman", serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
 body {
   margin: 0;
   padding: 0;
-  background: #0b0b0b; /* deep charcoal */
-  color: #e6e6e6;
-  font-family: "Segoe UI", Tahoma, sans-serif;
+  height: 100%;
+  background: radial-gradient(circle at top, #3b2a1a 0, #15110f 55%, #050304 100%);
+  color: var(--parchment);
+  font-family: var(--font-main);
 }
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+}
+
+/* -----------------------------------------
+   APP SHELL — 1.5× Wider
+----------------------------------------- */
 
 .app-shell {
+  width: 100%;
+  max-width: 1800px; /* 1.5× wider than original 1200px */
+  margin: 16px;
+  background: linear-gradient(135deg, #1b1510, #120e0b);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 245, 220, 0.08);
+  box-shadow: var(--shadow-soft);
   display: flex;
   flex-direction: column;
-  height: 100vh;
-}
-
-/* Mid-width layout */
-.app-body {
-  display: flex;
-  flex: 1;
   overflow: hidden;
-  max-width: 1500px;   /* between the two previous sizes */
-  margin: 0 auto;
 }
 
-/* ------------------------------
-   Header
------------------------------- */
+/* -----------------------------------------
+   HEADER
+----------------------------------------- */
 
 .app-header {
-  padding: 1.5rem;
-  background: #141414;
-  border-bottom: 1px solid #2a2a2a;
-  text-align: center;
+  padding: 18px 22px 12px;
+  border-bottom: 1px solid rgba(255, 245, 220, 0.08);
+  background: radial-gradient(circle at top left, #3b2a1a 0, #15110f 55%);
 }
 
 .app-header h1 {
   margin: 0;
-  font-size: 2rem;
-  color: #ff8c32; /* warm orange accent */
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 .subtitle {
-  margin: 0.5rem 0 1rem;
-  color: #c7c7c7;
-  font-size: 0.95rem;
+  margin: 6px 0 0;
+  font-size: 0.9rem;
+  color: var(--text-muted);
 }
 
-/* ------------------------------
-   Global Search
------------------------------- */
+/* -----------------------------------------
+   GLOBAL SEARCH
+----------------------------------------- */
 
 .global-search-box {
-  margin: 1rem auto 0;
-  width: 75%;
+  margin: 14px auto 0;
+  width: 70%;
   max-width: 650px;
 }
 
 #global-search {
   width: 100%;
-  padding: 0.7rem;
-  font-size: 1rem;
-  border-radius: 4px;
-  border: 1px solid #333;
-  background: #1a1a1a;
-  color: #eee;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border-soft);
+  background: rgba(15, 11, 8, 0.9);
+  color: var(--parchment);
+  font-size: 0.9rem;
 }
 
 #global-search:focus {
   outline: none;
-  border-color: #ff8c32; /* orange glow */
-  box-shadow: 0 0 6px #ff8c32;
+  border-color: rgba(242, 210, 160, 0.4);
+  box-shadow: 0 0 6px rgba(242, 210, 160, 0.3);
 }
 
 .global-results {
-  width: 75%;
+  width: 70%;
   max-width: 650px;
-  margin: 0.5rem auto 0;
+  margin: 8px auto 0;
   max-height: 240px;
   overflow-y: auto;
-  background: #141414;
-  border: 1px solid #222;
-  border-radius: 4px;
-  padding: 0.5rem 1rem;
+  background: rgba(15, 11, 8, 0.9);
+  border: 1px solid var(--border-soft);
+  border-radius: 8px;
+  padding: 8px 12px;
 }
 
 .search-result {
-  padding: 0.5rem 0;
-  border-bottom: 1px solid #222;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border-soft);
 }
 
 .search-result strong {
-  color: #ff8c32;
+  color: var(--accent-soft);
 }
 
-/* ------------------------------
-   Sidebar Navigation
------------------------------- */
+/* -----------------------------------------
+   LAYOUT
+----------------------------------------- */
+
+.app-body {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  min-height: 540px;
+  max-height: calc(100vh - 80px);
+}
+
+/* -----------------------------------------
+   SIDEBAR
+----------------------------------------- */
 
 .sidebar {
-  width: 230px;
-  background: #141414;
-  border-right: 1px solid #222;
-  padding: 1rem;
-  overflow-y: auto;
+  background: linear-gradient(180deg, #18120e, #100c09);
+  border-right: 1px solid rgba(255, 245, 220, 0.08);
+  padding: 10px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
 .nav-btn {
   width: 100%;
-  padding: 0.7rem;
-  margin-bottom: 0.5rem;
-  background: #1a1a1a;
-  border: 1px solid #333;
-  color: #ddd;
-  cursor: pointer;
-  border-radius: 4px;
   text-align: left;
-  transition: 0.2s;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: var(--transition-fast);
 }
 
 .nav-btn:hover {
-  background: #222;
-  border-color: #ff8c32;
+  background: rgba(242, 210, 160, 0.06);
+  color: var(--parchment);
+  border-color: rgba(242, 210, 160, 0.18);
+  transform: translateX(1px);
 }
 
 .nav-btn.active {
-  background: #2a2a2a;
-  border-color: #ff8c32;
-  color: #ff8c32;
+  background: rgba(242, 210, 160, 0.12);
+  color: var(--parchment);
+  border-color: rgba(242, 210, 160, 0.4);
 }
 
-/* ------------------------------
-   Content Panels
------------------------------- */
+/* -----------------------------------------
+   CONTENT PANELS
+----------------------------------------- */
 
 .content {
-  flex: 1;
-  padding: 1.5rem;
+  padding: 16px 20px;
   overflow-y: auto;
 }
 
 .panel {
   display: none;
+  animation: fadeIn 0.2s ease-out;
 }
 
 .panel.active {
   display: block;
 }
 
-.panel-intro {
-  color: #c7c7c7;
-  margin-bottom: 1rem;
+.panel h2 {
+  margin: 0 0 6px;
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
-/* ------------------------------
-   Timeline
------------------------------- */
+.panel-intro {
+  margin: 0 0 14px;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+/* -----------------------------------------
+   TIMELINE (Era Grouping)
+----------------------------------------- */
 
 .timeline-era {
-  margin-bottom: 1.5rem;
-  padding: 1rem;
-  background: #141414;
-  border: 1px solid #222;
-  border-radius: 4px;
+  background: rgba(15, 11, 8, 0.9);
+  border-radius: var(--radius);
+  border: 1px solid var(--border-soft);
+  padding: 12px 14px;
+  margin-bottom: 12px;
 }
 
 .timeline-era h2 {
-  margin-top: 0;
-  color: #ff8c32;
+  margin: 0 0 6px;
+  font-size: 1.1rem;
+  color: var(--accent-soft);
 }
 
-.timeline-era details {
-  margin: 0.4rem 0;
-  padding: 0.6rem;
-  background: #1a1a1a;
-  border-radius: 4px;
-  border: 1px solid #222;
+details {
+  margin: 6px 0;
+  background: rgba(243, 226, 196, 0.03);
+  border-radius: 6px;
+  padding: 6px 8px;
 }
 
-.entry-tags {
-  color: #ffb067; /* soft orange */
+details summary {
+  cursor: pointer;
   font-size: 0.85rem;
+  color: var(--parchment);
 }
 
-/* ------------------------------
-   Atlas Layout
------------------------------- */
+details p {
+  margin: 4px 0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* -----------------------------------------
+   ATLAS
+----------------------------------------- */
 
 .atlas-layout {
-  display: flex;
-  gap: 1rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.4fr);
+  gap: 14px;
 }
 
-.atlas-map {
-  flex: 1;
-  background: #141414;
-  border: 1px solid #222;
-  border-radius: 4px;
-  padding: 1rem;
+.atlas-map,
+.atlas-regions {
+  background: rgba(15, 11, 8, 0.9);
+  border-radius: var(--radius);
+  border: 1px solid var(--border-soft);
+  padding: 12px;
 }
 
 .map-placeholder {
+  border: 1px dashed rgba(242, 210, 160, 0.3);
+  border-radius: 10px;
+  padding: 18px 12px;
   text-align: center;
-  color: #777;
+  color: var(--text-muted);
+  font-size: 0.85rem;
 }
 
 .atlas-regions {
-  width: 300px;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 10px;
 }
 
-.region
+.region-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.region-item {
+  padding: 6px 7px;
+  border-radius: 6px;
+  cursor: pointer;
+  color: var(--text-muted);
+  transition: var(--transition-fast);
+}
+
+.region-item:hover {
+  background: rgba(242, 210, 160, 0.06);
+  color: var(--parchment);
+}
+
+.region-item.active {
+  background: rgba(242, 210, 160, 0.12);
+  color: var(--parchment);
+}
+
+/* -----------------------------------------
+   CARDS (Factions, Culture, Characters)
+----------------------------------------- */
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 12px;
+}
+
+.card {
+  background: rgba(15, 11, 8, 0.9);
+  border-radius: var(--radius);
+  border: 1px solid var(--border-soft);
+  padding: 12px;
+  font-size: 0.85rem;
+}
+
+.card h3 {
+  margin: 0 0 4px;
+  font-size: 1rem;
+  color: var(--accent-soft);
+}
+
+.card .tagline {
+  margin: 0 0 6px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* -----------------------------------------
+   ENCYCLOPEDIA
+----------------------------------------- */
+
+#encyclopedia-search {
+  width: 100%;
+  padding: 7px 9px;
+  border-radius: 8px;
+  border: 1px solid var(--border-soft);
+  background: rgba(15, 11, 8, 0.9);
+  color: var(--parchment);
+  font-size: 0.85rem;
+}
+
+.encyclopedia-results {
+  display: grid;
+  gap: 10px;
+}
+
+.encyclopedia-entry {
+  background: rgba(15, 11, 8, 0.9);
+  border-radius: var(--radius);
+  border: 1px solid var(--border-soft);
+  padding: 10px;
+}
+
+.encyclopedia-entry h3 {
+  margin: 0 0 4px;
+  font-size: 1rem;
+  color: var(--accent-soft);
+}
+
+.encyclopedia-entry .entry-tags {
+  margin: 0 0 4px;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* -----------------------------------------
+   ANIMATIONS
+----------------------------------------- */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* -----------------------------------------
+   RESPONSIVE
+----------------------------------------- */
+
+@media (max-width: 900px) {
+  .app-body {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    flex-direction: row;
+    overflow-x: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .atlas-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .atlas-regions {
+    grid-template-columns: 1fr;
+  }
+}
